@@ -23,9 +23,10 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new
-    @movie.title = params.fetch(:title)
-    @movie.description = params.fetch(:description)
+    movie_attributes = params.require(:movie).permit(:title, :description)  # this line allows us to access the movie hash from the form
+    @movie = Movie.new(movie_attributes)
+    @movie.title = params.fetch(:movie).fetch(:title)
+    @movie.description = params.fetch(:movie).fetch(:description)
 
     if @movie.valid?
       @movie.save
@@ -43,11 +44,12 @@ class MoviesController < ApplicationController
   end
 
   def update
+    movie_attributes = params.require(:movie).permit(:title, :description)
     the_id = params.fetch(:id)
     @movie = Movie.where( id: the_id ).first
-    @movie.title = params.fetch("query_title")
-    @movie.description = params.fetch("query_description")
-
+    @movie.title = params.fetch("title")
+    @movie.description = params.fetch("description")
+    
     if @movie.valid?
       @movie.save
       redirect_to movies_url, notice: "Movie updated successfully."
