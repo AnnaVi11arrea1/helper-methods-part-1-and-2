@@ -8,7 +8,7 @@
 
 <div>
 
-  <%= link_to "Add a new movie", new_movie_path %>
+  <%= link_to "Add a new director", new_director_path %>
 </div>
 
 <hr>
@@ -20,11 +20,15 @@
     </th>
 
     <th>
-      Title
+      Name
     </th>
 
     <th>
-      Description
+      Biography
+    </th>
+
+    <th>
+      Birth date
     </th>
 
     <th>
@@ -39,29 +43,33 @@
     </th>
   </tr>
 
-  <% @movies.each do |a_movie| %>
+  <% @directors.each do |a_director| %>
   <tr>
     <td>
-      <%= a_movie.id %>
+      <%= a_director.id %>
     </td>
 
     <td>
-      <%= a_movie.title %>
+      <%= a_director.name %>
     </td>
 
     <td>
-      <%= a_movie.description %>
+      <%= a_director.bio %>
     </td>
 
     <td>
-      <%= time_ago_in_words(a_movie.created_at) %> ago
-    </td>
-    <td>
-      <%= time_ago_in_words(a_movie.updated_at) %> ago
+      <%= a_director.dob %>
     </td>
 
     <td>
-      <%= link_to "Show details", movie_path(a_movie) %>
+      <%= time_ago_in_words(a_director.created_at) %> ago
+    </td>
+    <td>
+      <%= time_ago_in_words(a_director.updated_at) %> ago
+    </td>
+
+    <td>
+      <%= link_to "Show details", movie_path(a_director) %>
 
     </td>
   </tr>
