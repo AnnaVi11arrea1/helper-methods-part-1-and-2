@@ -8,7 +8,7 @@ class DirectorsController < ApplicationController
     @directors = matching_directors.order( :name => :asc )
 
     respond_to do |format|
-      format.jason do
+      format.json do
         render json: @directors
       end
 
