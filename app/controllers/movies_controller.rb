@@ -37,9 +37,7 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    the_id = params.fetch(:id)
-    matching_movies = Movie.where( id: the_id )
-    @movie = matching_movies.first
+    @movie = Movie.find(params.fetch(:id))
     render "movies/edit" 
   end
 
@@ -47,8 +45,8 @@ class MoviesController < ApplicationController
     movie_attributes = params.require(:movie).permit(:title, :description)
     the_id = params.fetch(:id)
     @movie = Movie.where( id: the_id ).first
-    @movie.title = params.fetch("title")
-    @movie.description = params.fetch("description")
+    @movie.title = params.fetch(:movie).fetch(:title)
+    @movie.description = params.fetch(:movie).fetch(:description)
     
     if @movie.valid?
       @movie.save

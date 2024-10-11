@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "/movies/:id" =>  "movies#show", as: :movie
   
   # UPDATE
-  patch "/movies/:id" =>  "movies#update" 
+  patch "/movies/:id" =>  "movies#update"
   get "/movies/:id/edit" =>  "movies#edit", as: :edit_movie
   
   # DELETE
